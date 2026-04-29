@@ -67,8 +67,8 @@ With a 1/2.3" optical format, 1.55μm pixel size, and RGGB Bayer pattern, the CA
 | Parameter | Specification |
 | :--- | :--- |
 | **Interface Type** | MIPI CSI-2 |
-| **Data Lanes** | 4-lane |
-| **Connector** | 22-pin FPC |
+| **Data Lanes** | 2-lane |
+| **Connector** | 22-pin 0.5mm Pitch FPC / 15-pin 1.0mm Pitch FPC |
 | **Dimensions** | 38mm × 38mm |
 | **Lens Mount** | CS-mount / M12 |
 
@@ -122,16 +122,18 @@ sudo ./build.sh --lite    # Lite mode (minimal dependencies)
 
 ### 3.3 Manual Configuration
 
-Edit your `/boot/firmware/config.txt` (Pi 5) or `/boot/config.txt` (Pi 4) and add:
+Edit your `/boot/firmware/config.txt` (Pi 5) or `/boot/config.txt` (Pi 4) and add one of the following:
 
+**For CAM0 port**:
 ```ini
 camera_auto_detect=0
-dtoverlay=imx577
+dtoverlay=imx577-overlay,cam0
 ```
 
-For CAM0 port:
+**For CAM1 port**:
 ```ini
-dtoverlay=imx577,cam0
+camera_auto_detect=0
+dtoverlay=imx577-overlay,cam1
 ```
 
 Reboot your Raspberry Pi for the changes to take effect:
