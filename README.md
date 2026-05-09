@@ -74,6 +74,19 @@ With a 1/2.3" optical format, 1.55μm pixel size, and RGGB Bayer pattern, the CA
 
 ---
 
+### 2.4 Strobe & XVS (Vertical Sync) Output
+
+The CAM-IMX577 provides two hardware synchronization signal pads on the PCB:
+
+- **Strobe**: A flash/strobe trigger output signal that pulses in sync with each exposure. It can be used to drive an external LED flash or strobe light, ensuring the illumination is precisely aligned with the camera's exposure window.
+- **XVS (Vertical Sync)**: The vertical synchronization signal output from the Sony IMX577 sensor. XVS pulses once per frame at the start of each vertical blanking period, making it ideal for multi-camera synchronization, external trigger coordination, and precise frame timing.
+
+![CAM-IMX577 Strobe & XVS Pads](images/imx577-strobe-xvs.png)
+
+> **Note**: Both Strobe and XVS are exposed as solder pads on the PCB (as shown in the image above). They are intended for advanced users who require hardware-level synchronization. Please refer to the user manual `CAM-IMX577-12MP-V10.pdf` for detailed electrical specifications and usage guidelines.
+
+---
+
 ## 3. Software Support
 
 ### 3.1 Repository Contents
