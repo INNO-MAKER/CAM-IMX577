@@ -208,14 +208,23 @@ For lens selection and compatibility details, refer to the lens documentation in
 
 ---
 
-## 6. Documentation
+## 6. Preset OS Image
+
+A pre-configured Raspberry Pi OS image with all drivers and software pre-installed is available for download:
+
+**Download**: [https://www.jianguoyun.com/p/DWqJpGAQpdSrBxil9p8GIAA](https://www.jianguoyun.com/p/DWqJpGAQpdSrBxil9p8GIAA)  
+**Password**: `exgk55`
+
+---
+
+## 7. Documentation
 
 - **User Manual**: See `CAM-IMX577-12MP-V10.pdf` for comprehensive technical documentation
 - **Lens Specifications**: See `camera_lens/` directory for compatible lens information
 
 ---
 
-## 7. Support & Licensing
+## 8. Support & Licensing
 
 ### Source Code Availability
 
