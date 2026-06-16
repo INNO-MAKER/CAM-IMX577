@@ -96,7 +96,8 @@ This repository provides pre-built drivers, IPA modules, and offline build packa
 **Available Components**:
 
 - **`prebuild-driver-ipa/`** - Pre-compiled kernel driver and IPA modules
-  - `imx577_trixie_pi5_k6.12.75+rpt-rpi-2712_*.tar.gz` - Ready-to-install driver package for Raspberry Pi 5
+  - `imx577_bookworm_pi5_k6.12.75+rpt-rpi-2712_20260616-134821.tar.gz` - Ready-to-install driver for Raspberry Pi 5 (Debian Bookworm, kernel 6.12.75)
+  - `imx577_trixie_pi5_k6.12.75+rpt-rpi-2712_20260418-201631.tar.gz` - Ready-to-install driver for Raspberry Pi 5 (Debian Trixie, kernel 6.12.75)
 
 - **`libcamera_offline_build.tar.gz`** - Complete offline build package for libcamera with IMX577 support
 
@@ -109,14 +110,30 @@ This repository provides pre-built drivers, IPA modules, and offline build packa
 
 #### Option A: Use Pre-built Driver (Recommended)
 
-Extract and install the pre-compiled driver package:
+> ⚠️ **Important**: Pre-compiled driver packages are built for **specific OS versions and kernel versions**. Before installation, verify that your system's OS version and kernel version match exactly. Check with:
+> ```bash
+> cat /etc/os-release   # Check OS version
+> uname -r              # Check kernel version
+> ```
+
+**Supported Versions:**
+
+| Package | OS | Platform | Kernel |
+| :--- | :--- | :--- | :--- |
+| `imx577_bookworm_pi5_k6.12.75+rpt-rpi-2712_20260616-134821.tar.gz` | Raspberry Pi OS Bookworm | Pi 5 (2712) | 6.12.75+rpt-rpi-2712 |
+| `imx577_trixie_pi5_k6.12.75+rpt-rpi-2712_20260418-201631.tar.gz` | Raspberry Pi OS Trixie | Pi 5 (2712) | 6.12.75+rpt-rpi-2712 |
+
+Extract and install the matching package:
 
 ```bash
 cd prebuild-driver-ipa
-tar -xzf imx577_trixie_pi5_k6.12.75+rpt-rpi-2712_*.tar.gz
-cd imx577_driver
-chmod +x install.sh
-sudo ./install.sh
+tar -xzf <matching-package>.tar.gz
+cd <extracted-folder>
+sudo ./scripts/install.sh
+sudo reboot
+
+# After reboot, verify installation
+./scripts/verify.sh
 ```
 
 #### Option B: Offline Compilation
@@ -242,10 +259,3 @@ For technical support, product inquiries, and source code access requests, pleas
 *   **GitHub**: [github.com/INNO-MAKER](https://github.com/INNO-MAKER)
 *   **Email**: [support@inno-maker.com](mailto:support@inno-maker.com) | [sales@inno-maker.com](mailto:sales@inno-maker.com)
 
----
-
-## 8. License & Terms
-
-This repository contains pre-built binaries and offline build packages for the CAM-IMX577 camera module. Use of these materials is subject to the terms and conditions provided by INNO-MAKER.
-
-For detailed licensing information and terms of use, please contact our support team.
