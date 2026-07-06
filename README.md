@@ -4,7 +4,7 @@
 
 ## 1. Product Overview
 
-The **CAM-IMX577** is a high-performance 12.3MP MIPI CSI-2 camera module featuring the **Sony IMX577** (IMX477 variant) back-illuminated CMOS sensor. Designed for professional imaging applications on Raspberry Pi 5 and other embedded Linux systems, it delivers exceptional image quality with support for multiple video formats ranging from Full HD to 4K UHD at 30 fps.
+The **CAM-IMX577** is a high-performance 12.3MP MIPI CSI-2 camera module featuring the **Sony IMX577** (IMX477 variant) back-illuminated CMOS sensor. Designed for professional imaging applications on Raspberry Pi 5 and other embedded Linux systems, it delivers exceptional image quality with support for multiple video formats ranging from Full HD to 4K UHD.
 
 With a 1/2.3" optical format, 1.55μm pixel size, and RGGB Bayer pattern, the CAM-IMX577 provides excellent low-light performance, high dynamic range support, and flexible RAW output options (8-bit, 10-bit, 12-bit). The module is fully compatible with the libcamera ecosystem and supports offline compilation for maximum flexibility.
 
@@ -14,7 +14,7 @@ With a 1/2.3" optical format, 1.55μm pixel size, and RGGB Bayer pattern, the CA
 - **Back-illuminated CMOS Sensor** for exceptional low-light performance
 - **RGGB Bayer Pattern** for full-color imaging
 - **Multiple RAW Output Formats** (8-bit, 10-bit, 12-bit)
-- **Flexible Video Formats** - Full resolution to low-power modes at 30 fps
+- **Flexible Video Formats** - Full resolution to low-power modes
 - **MIPI CSI-2 4-lane** high-speed interface
 - **On-board Calibration Support** via I2C EEPROM
 - **Compatible with Raspberry Pi 5** and Linux-based embedded systems
@@ -48,19 +48,19 @@ With a 1/2.3" optical format, 1.55μm pixel size, and RGGB Bayer pattern, the CA
 | **Low-light Performance** | Excellent (back-illuminated technology) |
 | **Shutter Type** | Rolling shutter |
 
-### 2.2 Video Format & Resolution/Frame Rate
+### 2.2 Video Format & Resolution
 
-| Pixel Format | Resolution | Frame Rate | Description |
-| :--- | :--- | :--- | :--- |
-| SRGGB12_CSI2P | 4056 × 3040 | 30.00 fps | 12-bit RAW Full Resolution |
-| SRGGB12_CSI2P | 4056 × 2160 | 30.00 fps | 12-bit RAW 4K UHD |
-| SRGGB12_CSI2P | 2028 × 1520 | 30.00 fps | 12-bit RAW 2K |
-| SRGGB12_CSI2P | 2028 × 1080 | 30.00 fps | 12-bit RAW Full HD |
-| SRGGB12_CSI2P | 1332 × 990 | 30.00 fps | 12-bit RAW Low Power |
-| SRGGB10_CSI2P | 4056 × 3040 | 30.00 fps | 10-bit RAW Full Resolution |
-| SRGGB8 | 4056 × 3040 | 30.00 fps | 8-bit RAW Full Resolution |
+| Pixel Format | Resolution | Description |
+| :--- | :--- | :--- |
+| SRGGB12_CSI2P | 4056 × 3040 | 12-bit RAW Full Resolution |
+| SRGGB12_CSI2P | 4056 × 2160 | 12-bit RAW 4K UHD |
+| SRGGB12_CSI2P | 2028 × 1520 | 12-bit RAW 2K |
+| SRGGB12_CSI2P | 2028 × 1080 | 12-bit RAW Full HD |
+| SRGGB12_CSI2P | 1332 × 990 | 12-bit RAW Low Power |
+| SRGGB10_CSI2P | 4056 × 3040 | 10-bit RAW Full Resolution |
+| SRGGB8 | 4056 × 3040 | 8-bit RAW Full Resolution |
 
-*Note: All resolutions support 30fps with stable performance. The 12-bit RAW format provides maximum dynamic range and post-processing flexibility.*
+*Note: The 12-bit RAW format provides maximum dynamic range and post-processing flexibility.*
 
 ### 2.3 Interface & Physical Specifications
 
@@ -202,7 +202,7 @@ rpicam-still -o 12mp_image.jpg --width 4056 --height 3040
 rpicam-still -o 4k_image.jpg --width 4056 --height 2160
 ```
 
-**Record 4K Video (30fps):**
+**Record 4K Video:**
 ```bash
 rpicam-vid -t 10000 --width 4056 --height 2160 -o 4k_video.h264
 ```
