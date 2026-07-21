@@ -83,7 +83,7 @@ The CAM-IMX577 provides two hardware synchronization signal pads on the PCB:
 
 ![CAM-IMX577 Strobe & XVS Pads](images/imx577-strobe-xvs.png)
 
-> **Note**: Both Strobe and XVS are exposed as solder pads on the PCB (as shown in the image above). They are intended for advanced users who require hardware-level synchronization. Please refer to the user manual `CAM-IMX577-12MP-V10.pdf` for detailed electrical specifications and usage guidelines.
+> **Note**: Both Strobe and XVS are exposed as solder pads on the PCB (as shown in the image above). They are intended for advanced users who require hardware-level synchronization.
 
 ---
 
@@ -93,6 +93,21 @@ The CAM-IMX577 provides two hardware synchronization signal pads on the PCB:
 
 This repository provides pre-built drivers, IPA modules, runtime packages, and libcamera source for Raspberry Pi 5 with Debian Trixie.
 
+```
+CAM-IMX577/
+├── README.md
+├── prebuild-driver-ipa/                                          ← Pre-compiled kernel driver + IPA bundles
+│   ├── imx577-driver-pi5-k6.12.47+rpt-rpi-2712-20260720-140056.tar.gz
+│   ├── imx577-driver-pi5-k6.12.47+rpt-rpi-2712-20260720-140056.tar.gz.sha256
+│   ├── imx577-driver-pi5-k6.12.75+rpt-rpi-2712-20260720-140520.tar.gz
+│   └── imx577-driver-pi5-k6.12.75+rpt-rpi-2712-20260720-140520.tar.gz.sha256
+├── imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz   ← libcamera 0.7.0 runtime
+├── imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz.sha256
+├── pkg2-libcamera-imx577-source.tar.gz                          ← libcamera source (offline build)
+├── pkg2-libcamera-imx577-source.tar.gz.sha256
+└── camera_lens/                                                  ← Compatible lens documentation
+```
+
 **Available Components**:
 
 - **`prebuild-driver-ipa/`** - Pre-compiled kernel driver + IPA bundles (ready-to-install)
@@ -101,13 +116,12 @@ This repository provides pre-built drivers, IPA modules, runtime packages, and l
   | :--- | :--- | :--- |
   | `imx577-driver-pi5-k6.12.47+rpt-rpi-2712-20260720-140056.tar.gz` | Debian Trixie | 6.12.47+rpt-rpi-2712 |
   | `imx577-driver-pi5-k6.12.75+rpt-rpi-2712-20260720-140520.tar.gz` | Debian Trixie | 6.12.75+rpt-rpi-2712 |
-  | `imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz` | Debian Trixie | libcamera 0.7.0 runtime |
+
+- **`imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz`** - libcamera 0.7.0 runtime package (install without recompiling)
 
 - **`pkg2-libcamera-imx577-source.tar.gz`** - libcamera source with IMX577 IPA support (for offline compilation)
 
 - **`camera_lens/`** - Compatible lens specifications and documentation
-
-- **`CAM-IMX577-12MP-V10.pdf`** - Complete technical user manual
 
 ### 3.2 Driver Installation
 
@@ -137,7 +151,6 @@ sudo reboot
 If your kernel driver is already installed and you only need to update the libcamera runtime:
 
 ```bash
-cd prebuild-driver-ipa
 tar -xzf imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz
 cd <extracted-folder>
 sudo ./scripts/install.sh
@@ -242,24 +255,7 @@ A pre-configured Raspberry Pi OS image with all drivers and software pre-install
 
 ---
 
-## 7. Documentation
-
-- **User Manual**: See `CAM-IMX577-12MP-V10.pdf` for comprehensive technical documentation
-- **Lens Specifications**: See `camera_lens/` directory for compatible lens information
-
----
-
-## 8. Support & Licensing
-
-### Source Code Availability
-
-**Note**: Driver source code is not publicly available in this repository. Source code access is provided exclusively to customers who have purchased the CAM-IMX577 camera module. For source code requests, please contact our sales team.
-
-### User Manual
-
-Complete technical documentation is available in `CAM-IMX577-12MP-V10.pdf`. Additional detailed guides and API documentation are coming soon.
-
-### Support
+## 7. Support
 
 For technical support, product inquiries, and source code access requests, please visit:
 
