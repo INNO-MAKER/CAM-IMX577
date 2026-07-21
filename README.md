@@ -91,18 +91,21 @@ The CAM-IMX577 provides two hardware synchronization signal pads on the PCB:
 
 ### 3.1 Repository Contents
 
-This repository provides pre-built drivers, IPA modules, and offline build packages for Raspberry Pi 5 with Debian Trixie/Bookworm.
+This repository provides pre-built drivers, IPA modules, runtime packages, and libcamera source for Raspberry Pi 5 with Debian Trixie.
 
 **Available Components**:
 
-- **`prebuild-driver-ipa/`** - Pre-compiled kernel driver and IPA modules
-  - `imx577_bookworm_pi5_k6.12.75+rpt-rpi-2712_20260616-134821.tar.gz` - Ready-to-install driver for Raspberry Pi 5 (Debian Bookworm, kernel 6.12.75)
-  - `imx577_trixie_pi5_k6.12.75+rpt-rpi-2712_20260418-201631.tar.gz` - Ready-to-install driver for Raspberry Pi 5 (Debian Trixie, kernel 6.12.75)
+- **`prebuild-driver-ipa/`** - Pre-compiled kernel driver + IPA bundles (ready-to-install)
 
-- **`libcamera_offline_build.tar.gz`** - Complete offline build package for libcamera with IMX577 support
+  | Package | OS | Kernel |
+  | :--- | :--- | :--- |
+  | `imx577-driver-pi5-k6.12.47+rpt-rpi-2712-20260720-140056.tar.gz` | Debian Trixie | 6.12.47+rpt-rpi-2712 |
+  | `imx577-driver-pi5-k6.12.75+rpt-rpi-2712-20260720-140520.tar.gz` | Debian Trixie | 6.12.75+rpt-rpi-2712 |
+  | `imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz` | Debian Trixie | libcamera 0.7.0 runtime |
+
+- **`pkg2-libcamera-imx577-source.tar.gz`** - libcamera source with IMX577 IPA support (for offline compilation)
 
 - **`camera_lens/`** - Compatible lens specifications and documentation
-  - Lens compatibility information for various optical configurations
 
 - **`CAM-IMX577-12MP-V10.pdf`** - Complete technical user manual
 
@@ -115,13 +118,6 @@ This repository provides pre-built drivers, IPA modules, and offline build packa
 > cat /etc/os-release   # Check OS version
 > uname -r              # Check kernel version
 > ```
-
-**Supported Versions:**
-
-| Package | OS | Platform | Kernel |
-| :--- | :--- | :--- | :--- |
-| `imx577_bookworm_pi5_k6.12.75+rpt-rpi-2712_20260616-134821.tar.gz` | Raspberry Pi OS Bookworm | Pi 5 (2712) | 6.12.75+rpt-rpi-2712 |
-| `imx577_trixie_pi5_k6.12.75+rpt-rpi-2712_20260418-201631.tar.gz` | Raspberry Pi OS Trixie | Pi 5 (2712) | 6.12.75+rpt-rpi-2712 |
 
 Extract and install the matching package:
 
@@ -136,13 +132,25 @@ sudo reboot
 ./scripts/verify.sh
 ```
 
-#### Option B: Offline Compilation
+#### Option B: Install Runtime Package (libcamera 0.7.0)
 
-For advanced users who need to compile from source:
+If your kernel driver is already installed and you only need to update the libcamera runtime:
 
 ```bash
-tar -xzf libcamera_offline_build.tar.gz
-cd libcamera_offline_build
+cd prebuild-driver-ipa
+tar -xzf imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz
+cd <extracted-folder>
+sudo ./scripts/install.sh
+sudo reboot
+```
+
+#### Option C: Offline Compilation from Source
+
+For advanced users who need to compile libcamera from source:
+
+```bash
+tar -xzf pkg2-libcamera-imx577-source.tar.gz
+cd <extracted-folder>
 chmod +x build.sh
 sudo ./build.sh           # Full mode with Qt support
 sudo ./build.sh --lite    # Lite mode (minimal dependencies)
@@ -152,7 +160,7 @@ sudo ./build.sh --lite    # Lite mode (minimal dependencies)
 
 ### 3.3 Manual Configuration
 
-Edit your `/boot/firmware/config.txt` (Pi 5) or `/boot/config.txt` (Pi 4) and add one of the following:
+Edit your `/boot/firmware/config.txt` and add one of the following:
 
 **For CAM0 port**:
 ```ini
@@ -168,7 +176,7 @@ dtoverlay=imx577-overlay,cam1
 
 Reboot your Raspberry Pi for the changes to take effect:
 ```bash
-$ sudo reboot
+sudo reboot
 ```
 
 ---
@@ -258,4 +266,3 @@ For technical support, product inquiries, and source code access requests, pleas
 *   **Website**: [www.inno-maker.com](https://www.inno-maker.com)
 *   **GitHub**: [github.com/INNO-MAKER](https://github.com/INNO-MAKER)
 *   **Email**: [support@inno-maker.com](mailto:support@inno-maker.com) | [sales@inno-maker.com](mailto:sales@inno-maker.com)
-
