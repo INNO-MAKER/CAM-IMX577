@@ -91,85 +91,24 @@ The CAM-IMX577 provides two hardware synchronization signal pads on the PCB:
 
 ### 3.1 Repository Contents
 
-This repository provides pre-built drivers, IPA modules, runtime packages, and libcamera source for Raspberry Pi 5 with Debian Trixie.
+This repository provides product documentation, camera configuration guidance, compatible lens information, and hardware reference images for CAM-IMX577.
+
+Pre-built kernel-driver bundles, IPA modules, and libcamera runtime packages are no longer distributed in this public repository. For compatibility guidance or software access requests, please contact INNO-MAKER support.
 
 ```
 CAM-IMX577/
 ├── README.md
-├── prebuild-driver-ipa/                                          ← Pre-compiled kernel driver + IPA bundles
-│   ├── imx577-driver-pi5-k6.12.47+rpt-rpi-2712-20260720-140056.tar.gz
-│   ├── imx577-driver-pi5-k6.12.47+rpt-rpi-2712-20260720-140056.tar.gz.sha256
-│   ├── imx577-driver-pi5-k6.12.75+rpt-rpi-2712-20260720-140520.tar.gz
-│   └── imx577-driver-pi5-k6.12.75+rpt-rpi-2712-20260720-140520.tar.gz.sha256
-├── imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz   ← libcamera 0.7.0 runtime
-├── imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz.sha256
-├── pkg2-libcamera-imx577-source.tar.gz                          ← libcamera source (offline build)
-├── pkg2-libcamera-imx577-source.tar.gz.sha256
-└── camera_lens/                                                  ← Compatible lens documentation
+├── camera_lens/                                                  ← Compatible lens documentation
+└── images/                                                       ← Hardware reference images
 ```
 
-**Available Components**:
-
-- **`prebuild-driver-ipa/`** - Pre-compiled kernel driver + IPA bundles (ready-to-install)
-
-  | Package | OS | Kernel |
-  | :--- | :--- | :--- |
-  | `imx577-driver-pi5-k6.12.47+rpt-rpi-2712-20260720-140056.tar.gz` | Debian Trixie | 6.12.47+rpt-rpi-2712 |
-  | `imx577-driver-pi5-k6.12.75+rpt-rpi-2712-20260720-140520.tar.gz` | Debian Trixie | 6.12.75+rpt-rpi-2712 |
-
-- **`imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz`** - libcamera 0.7.0 runtime package (install without recompiling)
-
-- **`pkg2-libcamera-imx577-source.tar.gz`** - libcamera source with IMX577 IPA support (for offline compilation)
+**Available Resources**:
 
 - **`camera_lens/`** - Compatible lens specifications and documentation
 
-### 3.2 Driver Installation
+### 3.2 Software Access
 
-#### Option A: Use Pre-built Driver (Recommended)
-
-> ⚠️ **Important**: Pre-compiled driver packages are built for **specific OS versions and kernel versions**. Before installation, verify that your system's OS version and kernel version match exactly. Check with:
-> ```bash
-> cat /etc/os-release   # Check OS version
-> uname -r              # Check kernel version
-> ```
-
-Extract and install the matching package:
-
-```bash
-cd prebuild-driver-ipa
-tar -xzf <matching-package>.tar.gz
-cd <extracted-folder>
-sudo ./scripts/install.sh
-sudo reboot
-
-# After reboot, verify installation
-./scripts/verify.sh
-```
-
-#### Option B: Install Runtime Package (libcamera 0.7.0)
-
-If your kernel driver is already installed and you only need to update the libcamera runtime:
-
-```bash
-tar -xzf imx577-runtime-pi5-libcamera0.7.0-debian13-20260720-005005.tar.gz
-cd <extracted-folder>
-sudo ./scripts/install.sh
-sudo reboot
-```
-
-#### Option C: Offline Compilation from Source
-
-For advanced users who need to compile libcamera from source:
-
-```bash
-tar -xzf pkg2-libcamera-imx577-source.tar.gz
-cd <extracted-folder>
-chmod +x build.sh
-sudo ./build.sh           # Full mode with Qt support
-sudo ./build.sh --lite    # Lite mode (minimal dependencies)
-```
-
-**Build Time**: ~30-40 minutes (full mode) or ~15-20 minutes (lite mode)
+The pre-built driver, IPA, runtime, and source packages previously listed here are not publicly hosted in this repository. Please contact [support@inno-maker.com](mailto:support@inno-maker.com) or [sales@inno-maker.com](mailto:sales@inno-maker.com) with your target hardware, operating-system release, and kernel version for availability and compatibility guidance.
 
 ### 3.3 Manual Configuration
 
