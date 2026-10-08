@@ -91,24 +91,32 @@ The CAM-IMX577 provides two hardware synchronization signal pads on the PCB:
 
 ### 3.1 Repository Contents
 
-This repository provides product documentation, camera configuration guidance, compatible lens information, and hardware reference images for CAM-IMX577.
-
-Pre-built kernel-driver bundles, IPA modules, and libcamera runtime packages are no longer distributed in this public repository. For compatibility guidance or software access requests, please contact INNO-MAKER support.
+This repository provides product documentation, camera configuration guidance, compatible lens information, hardware reference images, and two Raspberry Pi 5 pre-built driver bundles for CAM-IMX577.
 
 ```
 CAM-IMX577/
 ├── README.md
+├── raspberry_pi_driver/
+│   └── precompiler-driver/                                      ← Raspberry Pi 5 pre-built driver bundles
 ├── camera_lens/                                                  ← Compatible lens documentation
 └── images/                                                       ← Hardware reference images
 ```
 
 **Available Resources**:
 
+- **`raspberry_pi_driver/precompiler-driver/`** - Pre-built Raspberry Pi 5 driver bundles for the OS and kernel combinations listed below
 - **`camera_lens/`** - Compatible lens specifications and documentation
 
-### 3.2 Software Access
+### 3.2 Raspberry Pi 5 Pre-built Driver Bundles
 
-The pre-built driver, IPA, runtime, and source packages previously listed here are not publicly hosted in this repository. Please contact [support@inno-maker.com](mailto:support@inno-maker.com) or [sales@inno-maker.com](mailto:sales@inno-maker.com) with your target hardware, operating-system release, and kernel version for availability and compatibility guidance.
+| Package | Target system | Required libcamera ABI |
+| :--- | :--- | :--- |
+| [`imx577_bookworm_pi5_k6.12.75+rpt-rpi-2712_20260616-134821.tar.gz`](./raspberry_pi_driver/precompiler-driver/imx577_bookworm_pi5_k6.12.75+rpt-rpi-2712_20260616-134821.tar.gz) | Raspberry Pi 5 · Debian Bookworm 12 · kernel `6.12.75+rpt-rpi-2712` | `libcamera.so.0.5` / `libcamera-base.so.0.5` |
+| [`imx577_trixie_pi5_k6.12.75+rpt-rpi-2712_20260418-201631.tar.gz`](./raspberry_pi_driver/precompiler-driver/imx577_trixie_pi5_k6.12.75+rpt-rpi-2712_20260418-201631.tar.gz) | Raspberry Pi 5 · Debian Trixie 13 · kernel `6.12.75+rpt-rpi-2712` | `libcamera.so.0.6` / `libcamera-base.so.0.6` |
+
+Each bundle contains the pre-built camera kernel module, IMX577 device-tree overlay, and matching package components. Select the bundle that matches the target operating system, exact kernel release, and libcamera ABI. Refer to the `README.md` and `MANIFEST` inside the selected archive before installation.
+
+For other platforms, kernel versions, standalone runtime packages, or source access, contact [support@inno-maker.com](mailto:support@inno-maker.com) or [sales@inno-maker.com](mailto:sales@inno-maker.com) with the target hardware and software version details.
 
 ### 3.3 Manual Configuration
 
