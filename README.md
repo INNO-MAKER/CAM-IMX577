@@ -15,7 +15,7 @@ With a 1/2.3" optical format, 1.55μm pixel size, and RGGB Bayer pattern, the CA
 - **RGGB Bayer Pattern** for full-color imaging
 - **Multiple RAW Output Formats** (8-bit, 10-bit, 12-bit)
 - **Flexible Video Formats** - Full resolution to low-power modes
-- **MIPI CSI-2 4-lane** high-speed interface
+- **MIPI CSI-2 2-lane** high-speed interface
 - **On-board Calibration Support** via I2C EEPROM
 - **Compatible with Raspberry Pi 5** and Linux-based embedded systems
 
